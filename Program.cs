@@ -1,7 +1,9 @@
-﻿//Etapa 3
+﻿//Etapa 4
 int cantidadProducto = 0;
 decimal total = 0;
 string opcion;
+const decimal descuentoDelDiez = 0.1m;
+const decimal descuentoDelCinco = 0.05m;
 do
 {
     Console.WriteLine("¿Que desea hacer?");
@@ -25,6 +27,7 @@ do
             total += precio;
             cantidadProducto++;
 
+
             break;
         case "2":
             Console.WriteLine("Cerrando la ventana...");
@@ -35,5 +38,24 @@ do
     }
 } while (opcion != "2");
 Console.WriteLine($"Cantidad de productos: {cantidadProducto}");
-Console.WriteLine($"Total de la venta: {total}");
+if (total > 50000)
+{
+    Console.WriteLine($"Subtotal: {total}");
+    Console.WriteLine($"Descuento: {total * descuentoDelDiez}");
+    total -= total * descuentoDelDiez;
+    Console.WriteLine($"Total de la venta: {total}");
+
+}
+else if (total > 20000)
+{
+    Console.WriteLine($"Subtotal: {total}");
+    decimal descuento = total * descuentoDelCinco;
+    Console.WriteLine($"Descuento: {descuento}");
+    total -= total * descuentoDelCinco;
+    Console.WriteLine($"Total de la venta: {total}");
+}
+else
+{
+    Console.WriteLine($"Total de la venta: {total}");
+}
 Console.ReadKey();
