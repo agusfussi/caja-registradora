@@ -1,7 +1,8 @@
-﻿//Etapa 4
+﻿//Etapa 5
 int cantidadProducto = 0;
 decimal total = 0;
 string opcion;
+string opcionPago;
 const decimal descuentoDelDiez = 0.1m;
 const decimal descuentoDelCinco = 0.05m;
 do
@@ -58,4 +59,36 @@ else
 {
     Console.WriteLine($"Total de la venta: {total}");
 }
+do
+{
+    Console.WriteLine("Medio de pago: ");
+    Console.WriteLine("1 - Efectivo");
+    Console.WriteLine("2 - Debito");
+    Console.WriteLine("3 - Credito");
+    Console.Write("Ingrese una opción: ");
+
+    opcionPago = Console.ReadLine();
+    switch (opcionPago)
+    {
+        case "1":
+            Console.WriteLine("Pago en efectivo tiene un 10% de descuento");
+            Console.WriteLine($"Descuento: {total * 0.1m}");
+            total -= total * 0.1m;
+            Console.WriteLine($"Total a pagar con descuento: {total}");
+            break;
+        case "2":
+            Console.WriteLine($"Pago con tarjeta de debito es el mismo monto, Total: {total}");
+            break;
+        case "3":
+            Console.WriteLine("Pago con tarjeta de credito tiene un 15% de recargo");
+            Console.WriteLine($"Recargo: {total * 0.15m}");
+            total += total * 0.15m;
+            Console.WriteLine($"Total a pagar con recargo: {total}");
+            break;
+        default:
+            Console.WriteLine("Opción no reconocida.");
+            break;
+    }
+} while (opcionPago != "1" && opcionPago != "2" && opcionPago != "3");
+
 Console.ReadKey();
