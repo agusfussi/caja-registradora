@@ -1,10 +1,12 @@
-﻿//Etapa 5
+﻿//Etapa 6
 int cantidadProducto = 0;
 decimal total = 0;
 string opcion;
 string opcionPago;
 const decimal descuentoDelDiez = 0.1m;
 const decimal descuentoDelCinco = 0.05m;
+decimal descuento = 0;
+decimal recargo = 0;
 do
 {
     Console.WriteLine("¿Que desea hacer?");
@@ -28,7 +30,6 @@ do
             total += precio;
             cantidadProducto++;
 
-
             break;
         case "2":
             Console.WriteLine("Cerrando la ventana...");
@@ -41,23 +42,13 @@ do
 Console.WriteLine($"Cantidad de productos: {cantidadProducto}");
 if (total > 50000)
 {
-    Console.WriteLine($"Subtotal: {total}");
-    Console.WriteLine($"Descuento: {total * descuentoDelDiez}");
-    total -= total * descuentoDelDiez;
-    Console.WriteLine($"Total de la venta: {total}");
-
+    descuento = total * descuentoDelDiez;
+    total -= descuento;
 }
 else if (total > 20000)
 {
-    Console.WriteLine($"Subtotal: {total}");
-    decimal descuento = total * descuentoDelCinco;
-    Console.WriteLine($"Descuento: {descuento}");
-    total -= total * descuentoDelCinco;
-    Console.WriteLine($"Total de la venta: {total}");
-}
-else
-{
-    Console.WriteLine($"Total de la venta: {total}");
+    descuento = total * descuentoDelCinco;
+    total -= descuento;
 }
 do
 {
@@ -71,24 +62,51 @@ do
     switch (opcionPago)
     {
         case "1":
-            Console.WriteLine("Pago en efectivo tiene un 10% de descuento");
-            Console.WriteLine($"Descuento: {total * 0.1m}");
-            total -= total * 0.1m;
-            Console.WriteLine($"Total a pagar con descuento: {total}");
+            descuento = total * 0.1m;
+            total -= descuento;
             break;
         case "2":
-            Console.WriteLine($"Pago con tarjeta de debito es el mismo monto, Total: {total}");
             break;
         case "3":
-            Console.WriteLine("Pago con tarjeta de credito tiene un 15% de recargo");
-            Console.WriteLine($"Recargo: {total * 0.15m}");
-            total += total * 0.15m;
-            Console.WriteLine($"Total a pagar con recargo: {total}");
+            recargo = total * 0.15m;
+            total += recargo;
             break;
         default:
             Console.WriteLine("Opción no reconocida.");
             break;
     }
 } while (opcionPago != "1" && opcionPago != "2" && opcionPago != "3");
+for (int i = 0; i < 30; i++)
+{
+    Console.Write("-");
+}
+
+Console.WriteLine();
+Console.WriteLine("       KIOSCO EL RECREO");
+
+for (int i = 0; i < 30; i++)
+{
+    Console.Write("-");
+}
+
+Console.WriteLine();
+Console.WriteLine($"Cajero: Juan Perez");
+Console.WriteLine($"Productos: {cantidadProducto}");
+Console.WriteLine($"Subtotal: {total}");
+Console.WriteLine($"Descuento: {descuento}");
+Console.WriteLine($"Recargo: {recargo}");
+
+for (int i = 0; i < 30; i++)
+{
+    Console.Write("-");
+}
+
+Console.WriteLine();
+Console.WriteLine($"TOTAL: {total}");
+
+for (int i = 0; i < 30; i++)
+{
+    Console.Write("-");
+}
 
 Console.ReadKey();
